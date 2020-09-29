@@ -8,6 +8,7 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
+  const [prevTodos, setPrevTodos] = useState([]);
 
   useEffect(() => {
     getLocalTodos();
@@ -56,11 +57,15 @@ function App() {
         setTodos={setTodos}
         setInputText={setInputText}
         setStatus={setStatus}
+        setPrevTodos={setPrevTodos}
+        prevTodos={prevTodos}
       />
       <TodoList
         filteredTodos={filteredTodos}
         setTodos={setTodos}
         todos={todos}
+        setPrevTodos={setPrevTodos}
+        prevTodos={prevTodos}
       />
     </div>
   );

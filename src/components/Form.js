@@ -1,6 +1,14 @@
 import React from "react";
 
-const Form = ({ setInputText, setTodos, inputText, todos, setStatus }) => {
+const Form = ({
+  setInputText,
+  setTodos,
+  inputText,
+  todos,
+  setStatus,
+  setPrevTodos,
+  prevTodos,
+}) => {
   const inputTextHandler = (e) => {
     // console.log(e.target.value);
     setInputText(e.target.value);
@@ -8,6 +16,7 @@ const Form = ({ setInputText, setTodos, inputText, todos, setStatus }) => {
 
   const submitTodoHandler = (e) => {
     e.preventDefault();
+    setPrevTodos(prevTodos.concat([todos]));
     setTodos([
       ...todos,
       { text: inputText, completed: false, id: Math.random() * 1000 },
@@ -17,6 +26,14 @@ const Form = ({ setInputText, setTodos, inputText, todos, setStatus }) => {
   const statusHandler = (e) => {
     setStatus(e.target.value);
   };
+
+  const undoHandler = (e) => {
+    e.preventDefault();
+    if (prevTodos.length > 0) {
+      setTodos(prevTodos.pop());
+    }
+  };
+
   return (
     <form>
       <input
@@ -35,6 +52,7 @@ const Form = ({ setInputText, setTodos, inputText, todos, setStatus }) => {
           <option value="uncompleted">Uncompleted</option>
         </select>
       </div>
+      <button onClick={undoHandler}>Undo</button>
     </form>
   );
 };

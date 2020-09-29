@@ -1,7 +1,13 @@
 import React from "react";
 import Todo from "./Todo";
 
-const TodoList = ({ todos, setTodos, filteredTodos }) => {
+const TodoList = ({
+  todos,
+  setTodos,
+  filteredTodos,
+  setPrevTodos,
+  prevTodos,
+}) => {
   return (
     <div className="todo-container">
       <ul className="todo-list">
@@ -12,6 +18,8 @@ const TodoList = ({ todos, setTodos, filteredTodos }) => {
             text={todo.text}
             key={todo.id}
             todo={todo}
+            setPrevTodos={setPrevTodos}
+            prevTodos={prevTodos}
           />
         ))}
       </ul>
